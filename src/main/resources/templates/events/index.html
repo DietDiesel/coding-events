@@ -12,12 +12,19 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Name</th>
+            <th>Event Name</th>
+            <th>Event Description</th>
+            <th>Event Location</th>
         </tr>
     </thead>
-    <tr th:each="event : ${events}">
-        <td th:text="${event}"></td>
-    </tr>
+    <th:block th:each="eventName : ${events.keySet()}">
+        <tr>
+            <td th:text="${eventName}">Event Name from HashMap</td>
+            <td th:text="${events.get(eventName)}">Event Description from HashMap</td>
+            <td th:replace="address">Convention center address from fragment</td>
+        </tr>
+    </th:block>
+
 </table>
 </body>
 </html>
