@@ -32,9 +32,15 @@ public class Event {
     @NotNull(message = "Please submit a future event")
     private String eventDate;
 
-    public Event() {}
+    private EventType type;
 
-    public Event(String name, String description, String contactEmail, String location, boolean regRequired, int attendees, String eventDate) {
+    public Event() {
+        this.id = nextId;
+        nextId++;
+    }
+
+    public Event(String name, String description, String contactEmail, String location, boolean regRequired, int attendees, String eventDate, EventType type) {
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
@@ -42,8 +48,7 @@ public class Event {
         this.regRequired = regRequired;
         this.attendees = attendees;
         this.eventDate = eventDate;
-        this.id = nextId;
-        nextId++;
+        this.type = type;
     }
 
     public String getName() {
@@ -66,25 +71,53 @@ public class Event {
         return id;
     }
 
-    public String getContactEmail() { return contactEmail; }
+    public String getContactEmail() {
+        return contactEmail;
+    }
 
-    public void setContactEmail(String contactEmail) { this.contactEmail = contactEmail; }
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
+    }
 
-    public String getLocation() { return location; }
+    public String getLocation() {
+        return location;
+    }
 
-    public void setLocation(String location) { this.location = location; }
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-    public boolean isRegRequired() { return regRequired; }
+    public boolean isRegRequired() {
+        return regRequired;
+    }
 
-    public void setRegRequired(boolean regRequired) { this.regRequired = regRequired; }
+    public void setRegRequired(boolean regRequired) {
+        this.regRequired = regRequired;
+    }
 
-    public int getAttendees() { return attendees; }
+    public int getAttendees() {
+        return attendees;
+    }
 
-    public void setAttendees(int attendees) { this.attendees = attendees; }
+    public void setAttendees(int attendees) {
+        this.attendees = attendees;
+    }
 
-    public String getEventDate() { return eventDate; }
+    public String getEventDate() {
+        return eventDate;
+    }
 
-    public void setEventDate(String eventDate) { this.eventDate = eventDate; }
+    public void setEventDate(String eventDate) {
+        this.eventDate = eventDate;
+    }
+
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
+    }
 
     @Override
     public String toString() { return name; }
