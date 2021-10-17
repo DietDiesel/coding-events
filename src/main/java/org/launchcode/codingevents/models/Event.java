@@ -10,13 +10,16 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    @NotBlank
+    @NotBlank(message = "Name can't be blank. Sorry!")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters. Please try again")
     private String name;
     @Size(max = 500, message = "Description too long, please try again")
     private String description;
+    @NotBlank(message = "Email can't be blank. Sorry!")
     @Email(message = "Invalid email address, please try again")
     private String contactEmail;
+
+    public Event() {}
 
     public Event(String name, String description, String contactEmail) {
         this.name = name;
