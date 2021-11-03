@@ -10,38 +10,40 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * Created by Chris Bay
+ */
 @Controller
 @RequestMapping("events")
 public class EventController {
 
     @GetMapping
     public String displayAllEvents(Model model) {
+        model.addAttribute("title", "All Events");
         model.addAttribute("events", EventData.getAll());
         return "events/index";
     }
 
-    // URL /events/create
     @GetMapping("create")
-    public String renderCreateEventForm(Model model) {
+    public String displayCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
         model.addAttribute("types", EventType.values());
         return "events/create";
     }
 
-    // URL /events/create
     @PostMapping("create")
-    public String createEvent(@ModelAttribute @Valid Event newEvent,
-                              Errors errors, Model model) {
+    public String processCreateEventForm(@ModelAttribute @Valid Event newEvent,
+                                         Errors errors, Model model) {
         if(errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
             return "events/create";
         }
+
         EventData.add(newEvent);
         return "redirect:";
     }
 
-    // URL /events/delete
     @GetMapping("delete")
     public String displayDeleteEventForm(Model model) {
         model.addAttribute("title", "Delete Events");
@@ -50,7 +52,8 @@ public class EventController {
     }
 
     @PostMapping("delete")
-    public String deleteEvent(@RequestParam int[] eventIds) {
+    public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
+
         if (eventIds != null) {
             for (int id : eventIds) {
                 EventData.remove(id);
@@ -60,25 +63,4 @@ public class EventController {
         return "redirect:";
     }
 
-    @GetMapping("edit/{eventId}")
-    public String displayEditForm(Model model, @PathVariable int eventId) {
-        Event eventToEdit = EventData.getById(eventId);
-        model.addAttribute("event", eventToEdit);
-
-        String title = "Edit Event " + eventToEdit.getName() + " (id=" + eventToEdit.getId() + ")";
-        model.addAttribute("title", title);
-
-        model.addAttribute("name", eventToEdit.getName());
-        model.addAttribute("description", eventToEdit.getDescription());
-
-        return "events/edit";
-    }
-
-    @PostMapping("edit")
-    public String processEditForm(int eventId, String name, String description) {
-        Event eventToEdit = EventData.getById(eventId);
-        eventToEdit.setName(name);
-        eventToEdit.setDescription(description);
-        return "redirect:";
-    }
 }
