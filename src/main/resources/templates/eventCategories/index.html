@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body class="container">
+
+<h1>All Categories</h1>
+
+<nav th:replace = "fragments :: navigation"></nav>
+
+<p th:unless="${categories} and ${categories.size()}">No categories!</p>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+
+        <th></th>
+    </tr>
+    </thead>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.id}"?>category id</td>
+        <td th:text="${category.name}">category name</td>
+        <td>
+            <a th:href="@{/events/edit/{id}(id=${category.id})}">Edit</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
