@@ -18,13 +18,10 @@
     </thead>
     <tr th:each="event : ${events}">
         <td th:text="${event.id}"?>event id</td>
-        <td th:text="${event.name}">event name</td>
+        <td> <a th:text="${event.name}" th:href="@{/events/detail?eventId={id}(id=${event.id})}">event name</a></td>
         <td th:text="${event.eventCategory.name}">event category</td>
         <td th:text="${event.eventDetails.description}">event desc</td>
         <td th:text="${event.eventDetails.contactEmail}">contact email</td>
-        <td>
-            <a th:href="@{/events/edit/{id}(id=${event.id})}">Edit</a>
-        </td>
     </tr>
 </table>
 <p th:unless="${events} and ${events.size()}">No events!</p>
