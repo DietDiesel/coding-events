@@ -3,8 +3,6 @@
 <head th:replace="fragments :: head"></head>
 <body class="container">
 
-<h1>All Categories</h1>
-
 <nav th:replace = "fragments :: navigation"></nav>
 
 <p th:unless="${categories} and ${categories.size()}">No categories!</p>
