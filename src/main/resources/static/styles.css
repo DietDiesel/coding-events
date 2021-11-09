@@ -1,6 +1,10 @@
 body {
     font-size: 18px;
-    color: purple;
+    color: DarkSlateGrey;
+}
+
+p {
+    font-size: 18px;
 }
 
 .error {

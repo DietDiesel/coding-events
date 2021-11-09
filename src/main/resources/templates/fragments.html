@@ -12,7 +12,7 @@
 <body>
 
 <!-- fragment for styledHeader from LC textbook -->
-<h1 th:fragment = "styledHeader" class="fancyTitle" th:text="${title}"></h1>
+<h3 th:fragment = "styledHeader" class="fancyTitle" th:text="${title}"></h3>
 
 <!-- fragment for linkList from LC textbook -->
 <div th:fragment = "linkList">
@@ -24,7 +24,7 @@
 
 <!-- fragment for navigation from LC tutorial video -->
 <nav th:fragment = "navigation">
-    <h1 th:text="${title}">Coding Events</h1>
+    <h3 th:text="${title}">Coding Events</h3>
     <ul class="nav">
         <li class="nav-item"><a class="nav-link" href="/events">All Events</a></li>
         <li class="nav-item"><a class="nav-link" href="/events/create">Create Event</a></li>

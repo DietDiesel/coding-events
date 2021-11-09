@@ -5,8 +5,6 @@
 
 <nav th:replace = "fragments :: navigation"></nav>
 
-<p th:unless="${events} and ${events.size()}">No events!</p>
-
 <table class="table table-striped">
     <thead>
         <tr>
@@ -29,5 +27,6 @@
         </td>
     </tr>
 </table>
+<p th:unless="${events} and ${events.size()}">No events!</p>
 </body>
 </html>
